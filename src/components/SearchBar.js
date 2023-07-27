@@ -12,7 +12,7 @@ function SearchBar({ value, onSearch, onCheckboxChange }) {
         onChange={onSearch}
       />
       <br />
-      <input type="checkbox" id="checkbox" />
+      <input type="checkbox" id="checkbox" onChange={onCheckboxChange} />
       <label>Only show products in stock</label>
     </div>
   );

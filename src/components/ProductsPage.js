@@ -8,6 +8,7 @@ function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [productsInStock, setProductsInStock] = useState([]);
+  const [showOnlyProductsInStock, setShowOnlyProductsInStock] = useState(false);
 
   const handleSearch = (e) => {
     setSearchQuery(
@@ -18,6 +19,10 @@ function ProductsPage() {
       return item.name.includes(searchQuery);
     });
     setFilteredProducts(filteredProduct);
+  };
+
+  const handleCheckboxChange = (e) => {
+    setShowOnlyProductsInStock(e.target.checked);
   };
 
   const areProductsInStock = () => {
@@ -33,12 +38,23 @@ function ProductsPage() {
   window.addEventListener('load', (event) => {
     areProductsInStock();
   });
+
   return (
     <div>
       <h1>IronStore</h1>
-      <SearchBar value={searchQuery} onSearch={handleSearch} />
+      <SearchBar
+        value={searchQuery}
+        onSearch={handleSearch}
+        onCheckboxChange={handleCheckboxChange}
+      />
       <ProductTable
-        products={searchQuery.length > 0 ? filteredProducts : products}
+        products={
+          showOnlyProductsInStock
+            ? productsInStock
+            : searchQuery.length > 0
+            ? filteredProducts
+            : products
+        }
         inStock={productsInStock}
       />
     </div>
