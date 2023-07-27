@@ -1,11 +1,10 @@
-function ProductRow(props) {
-  console.log(props.product.inStock);
+function ProductRow({ product }) {
   return (
     <tr>
-      <th style={{ color: props.product.inStock ? 'black' : 'red' }}>
-        {props.product.name}
+      <th style={{ color: product.inStock ? 'black' : 'red' }}>
+        {product.name}
       </th>
-      <th>{props.product.price}</th>
+      <th>{product.price}</th>
     </tr>
   );
 }

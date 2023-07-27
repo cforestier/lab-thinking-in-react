@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import ProductRow from './ProductRow';
 
-function ProductTable(props) {
+function ProductTable({ products }) {
   return (
     <table>
       <tr>
         <th>Name</th>
         <th>Prix</th>
       </tr>
-      {props.products.map((product) => {
-        return <ProductRow product={product} />;
+      {products.map((product, index) => {
+        return <ProductRow product={product} key={`product ${index}`} />;
       })}
     </table>
   );
